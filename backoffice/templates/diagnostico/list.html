@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Diagnósticos</h1>
+    </div>
+    <div class="form-group">
+        <a class="btn btn-primary" href="{% url 'bo:diagnostico_add' %}" role="button">Agregar</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Comentarios</th>
+                <th>Tratamiento</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.comentarios }}</td>
+                    <td>{{ c.tratamiento }}</td>
+                    <td>{{ c.precio }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'bo:diagnostico_edit' c.id %}" role="button">Edit</a>
+                        <a class="btn btn-danger" href="{% url 'bo:diagnostico_delete' c.id %}" role="button">Delete</a>
+                        <a class="btn btn-info" href="{% url 'bo:diagnostico_detail' c.id %}" role="button">Detail</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
