@@ -36,6 +36,12 @@ urlpatterns = [
     path('raza/delete/<int:pk>/', RazaDelete.as_view(), name='raza_delete'),
     path('raza/detail/<int:pk>/', RazaDetail.as_view(), name='raza_detail'),
 
+    path('api/v1/animal/', ApiAnimalList.as_view()),
+    path('api/v1/diagnostico/', ApiDiagnosticoList.as_view()),
+    path('api/v1/historial/', ApiHistorialList.as_view()),
+    path('api/v1/paciente/', ApiPacienteList.as_view()),
+    path('api/v1/raza/', ApiRazaList.as_view()),
+
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 ]

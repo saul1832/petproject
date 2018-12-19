@@ -8,10 +8,16 @@ from django.db import models
 class Animal(models.Model):
     nombre = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.nombre
+
 
 class Raza(models.Model):
     nombre = models.CharField(max_length=30)
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.nombre
 
 
 class Diagnostico(models.Model):
@@ -19,6 +25,9 @@ class Diagnostico(models.Model):
     comentarios = models.CharField(max_length=500, null=True, blank=True)
     tratamiento= models.CharField(max_length=200, null=True, blank=True)
     precio = models.DecimalField(default=0, max_digits=6, decimal_places=2, null=True, blank=True)
+
+    def __str__(self):
+        return self.nombre
 
 
 class Paciente(models.Model):
@@ -31,11 +40,17 @@ class Paciente(models.Model):
     celular = models.CharField(max_length=15, null=True, blank=True)
     correo = models.CharField(max_length=50, null=True, blank=True)
 
+    def __str__(self):
+        return self.nombre
+
 
 class Historial(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     diagnostico = models.ForeignKey(Diagnostico, on_delete=models.CASCADE, null=True, blank=True)
     fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
     comentario = models.CharField(max_length=500, null=True, blank=True)
+
+    def __str__(self):
+        return self.nombre
 
 

@@ -6,9 +6,11 @@ from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse_lazy
 from django.views.generic import *
+from rest_framework import generics
 
 from backoffice.forms import *
 from backoffice.models import *
+from backoffice.serializers import *
 
 
 class LoginView(FormView):
@@ -186,5 +188,30 @@ class RazaDelete(LoginRequiredMixin, DeleteView):
 class RazaDetail(LoginRequiredMixin, DetailView):
     template_name = 'base/detail.html'
     model = Raza
+
+
+class ApiAnimalList(generics.ListAPIView):
+    queryset = Animal.objects.all()
+    serializer_class = AnimalSerializer
+
+
+class ApiDiagnosticoList(generics.ListAPIView):
+    queryset = Diagnostico.objects.all()
+    serializer_class = DiagnosticoSerializer
+
+
+class ApiHistorialList(generics.ListAPIView):
+    queryset = Historial.objects.all()
+    serializer_class = HistorialSerializer
+
+
+class ApiPacienteList(generics.ListAPIView):
+    queryset = Paciente.objects.all()
+    serializer_class = PacienteSerializer
+
+
+class ApiRazaList(generics.ListAPIView):
+    queryset = Raza.objects.all()
+    serializer_class = RazaSerializer
 
 
